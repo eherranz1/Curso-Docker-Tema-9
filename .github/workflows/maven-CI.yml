@@ -2,15 +2,14 @@ name: Maven CI/CD
 
 on:
   push:
-    branches: [ Development ]
+    branches:
+      - 'Development'
 
 jobs:
+
   test_and_build:
-
     runs-on: ubuntu-latest
-
     steps:
-
       - name: Hacemos Checkout del repo de Git
         uses: actions/checkout@v2
 
@@ -18,9 +17,9 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 8
-
+      
       - name: Test project with Maven
         run: mvn -B test
 
       - name: Build project with Maven
-        run: mvn -B package
+        uses: mvn -B package        
