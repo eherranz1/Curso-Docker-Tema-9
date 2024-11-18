@@ -9,8 +9,6 @@ on:
 jobs:
 
   test_and_build:
-    # example where instead of forming the default "cypress run ..."
-    # the user can specify their own command
     runs-on: ubuntu-latest
     steps:
       - name: Hacemos Checkuot del repo de Git
