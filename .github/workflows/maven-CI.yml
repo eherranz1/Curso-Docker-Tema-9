@@ -1,26 +1,28 @@
-name: example-custom-command
+name: Maven CI/CD
 on:
   push:
     branches:
-      - 'master'
+      - 'Development'
   pull_request:
   workflow_dispatch:
 
 jobs:
 
-  start:
+  test_and_build:
     # example where instead of forming the default "cypress run ..."
     # the user can specify their own command
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout 🛎
-        uses: actions/checkout@v4
+      - name: Hacemos Checkuot del repo de Git
+        uses: actions/checkout@v2
 
-      - name: Custom tests 🧪
-        uses: ./
+      - name: Set up JDK 8
+        uses: actions/setup-java@v1
         with:
-          command: npm run custom-test
-          working-directory: examples/custom-command
+          java-version: 8
 
-      - name: Show saved file 🖨
-        run: cat examples/custom-command/results.json
+      - name: Test project with Maven
+        run: mvn -B test
+
+      - name: Build project with Maven
+        run: mvn -B package
