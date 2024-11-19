@@ -1,4 +1,4 @@
-name: Maven CI/CD
+name: Maven_CI/CD
 on:
   push:
     branches:
